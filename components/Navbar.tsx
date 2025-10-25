@@ -12,7 +12,7 @@ const Navbar = () => {
            <Image 
                 src="/images/logo.svg" 
                 alt="Logo" width={46} height={44} 
-           />Teach Assist
+           />Learning Companion
         </div>
       </Link>
       <div className="flex items-center gap-8">
