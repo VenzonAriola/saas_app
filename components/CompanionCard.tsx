@@ -1,5 +1,8 @@
+
+
 import Image from "next/image"
 import Link from "next/link";
+
 
 interface CompanionCardProps {
     id:string,
@@ -10,13 +13,14 @@ interface CompanionCardProps {
     color: string,
 }
 
+
 const CompanionCard = ({id,name,topic,subject,duration,color}:
 CompanionCardProps) => {
     return (
         <article className="companion-card" style={{backgroundColor:color}}>
             <div className="flex items-center justify-between">
                 <div className="subject-badge">{subject}</div>
-                <button className="companion-bookmark">
+                <button className="companion-bookmark" >
                     <Image
                         src="/icons/bookmark.svg"
                         alt="bookmark"

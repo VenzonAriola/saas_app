@@ -83,6 +83,7 @@ const CompanionComponent = ({companionId, subject, topic, name, userName, userIm
     const toggleMicrophone = () => {
         const isMuted = vapi.isMuted()
         vapi.setMuted(!isMuted)
+        setIsMuted(!isMuted)
     }
 
     const handleCall = async  () => {
