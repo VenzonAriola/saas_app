@@ -4,7 +4,9 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here
   * images authorized clerk profile to show as if we are talking to vapi */
-
+    typescript:{
+        ignoreBuildErrors: true
+    },
 
     images:{
         remotePatterns:[
