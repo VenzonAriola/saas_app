@@ -1,5 +1,6 @@
 
-import { Button } from '@/components/ui/button'
+
+export const dynamic = "force-dynamic";
 import React from 'react'
 import CompanionCard from "@/components/CompanionCard";
 import CTA from "@/components/CTA";
@@ -7,6 +8,7 @@ import CompanionList from "@/components/CompanionList";
 import {recentSessions} from "@/constants";
 import {getAllCompanions, getRecentSessions} from "@/lib/actions/companion.actions";
 import {getSubjectColor} from "@/lib/utils";
+
 
 const Page = async  () => {
     //fetching the all companions and sessions
