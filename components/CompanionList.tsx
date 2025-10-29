@@ -38,7 +38,7 @@ CompanionsListProps) => {
                     { companions?.map(({id, subject, name,duration, topic })=>(
                         <TableRow key={id}>
                             <TableCell>
-                                <Link href={`/companions/${id}`} >
+                                <Link href={`/companion/${id}`} >
                                     <div className="flex items-center gap-2">
                                         {/* assigning diffirent color based on subject getSubject can be referrence to utils.ts*/}
                                         <div className="size-[72px] flex items-center justify-center rounded-lg max-md:hidden" style={{backgroundColor: getSubjectColor(subject)}}>

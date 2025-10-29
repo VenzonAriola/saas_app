@@ -16,7 +16,7 @@ const Profile = async () => {
 
     if(!user) redirect('/sign-in')
 
-    const companions = await getUserCompanions( user.id);
+    const companion = await getUserCompanions( user.id);
     const sessionHistory = await getUserSessions(user.id)
 
   return (
@@ -42,7 +42,7 @@ const Profile = async () => {
                 <div className="border border-black rounded-lg p-3 gap-2 flex flex-col h-fit">
                     <div className="flex gap-2 items-center">
                         <Image src="/icons/cap.svg" alt="cap" width={22} height={22} />
-                        <p className="text-2xl font-bold">{companions.length}</p>
+                        <p className="text-2xl font-bold">{companion.length}</p>
                     </div>
                     <div>Companions created</div>
                 </div>
@@ -58,9 +58,9 @@ const Profile = async () => {
                     </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="companions">
-                    <AccordionTrigger className="text-2xt font-bold">My Companions {`(${companions?.length})`}</AccordionTrigger>
+                    <AccordionTrigger className="text-2xt font-bold">My Companions {`(${companion?.length})`}</AccordionTrigger>
                     <AccordionContent>
-                        <CompanionList title="My Companions" companions={companions} />
+                        <CompanionList title="My Companions" companions={companion} />
                     </AccordionContent>
                 </AccordionItem>
 
