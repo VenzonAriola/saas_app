@@ -19,6 +19,8 @@ const Profile = async () => {
     const companion = await getUserCompanions( user.id);
     const sessionHistory = await getUserSessions(user.id)
 
+    console.log(sessionHistory)
+
   return (
     <main className="min-lg:w-3/4">
         <section className="flex justify-between gap-4 max-sm:flex-col items-center">
@@ -55,6 +57,7 @@ const Profile = async () => {
                     <AccordionTrigger className="text-2xt font-bold">Recent Sessions</AccordionTrigger>
                     <AccordionContent className="flex flex-col gap-4 text-balance">
                         <CompanionList title="Recent Sessions" companions={sessionHistory}/>
+
                     </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="companions">

@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 
 
 export const dynamic = "force-dynamic";
@@ -42,6 +43,7 @@ const Page = async  () => {
           <CTA />
       </section>
 
+        <Footer />
     </main>
   )
 }

@@ -71,3 +71,26 @@ export const recentSessions = [
     color: "#C8FFDF",
   },
 ];
+
+export const socialImgs = [
+    {
+        name: "github",
+        imgPath: "/images/github1.png",
+        url:"https://github.com/VenzonAriola"
+    },
+    {
+        name: "fb",
+        imgPath: "/images/fb.png",
+        url:"https://www.facebook.com/ariolavince"
+    },
+    {
+        name: "x",
+        imgPath: "/images/x.png",
+        url:"https://x.com/vinceariola89"
+    },
+    {
+        name: "linkedin",
+        imgPath: "/images/linkedin.png",
+        url:"https://www.linkedin.com/in/venzonariola/"
+    },
+];

@@ -213,6 +213,29 @@ body {
   .transcript-fade {
     @apply pointer-events-none absolute bottom-0 left-0 right-0 h-40 max-sm:h-20 bg-gradient-to-t from-background via-background/90 to-transparent z-10;
   }
+.footer{
+    @apply my-10 md:mt-20 mt-10 text-black px-5 md:px-20 xl:px-20 flex  justify-between;
+
+    .footer-container {
+        @apply  grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-0 w-full;
+    }
+
+    p{
+        @apply text-center md:text-start cursor-pointer;
+    }
+    .socials{
+        @apply flex items-center justify-center gap-5;
+
+        .icon{
+            @apply border border-black bg-gray-900 flex justify-center items-center rounded-xl size-10 md:size-12 cursor-pointer transition-all duration-500 hover:bg-gray-700;
+        }
+
+        img{
+            @apply inline-block;
+        }
+    }
+}
+
 }
 
 @layer utilities {

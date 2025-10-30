@@ -3,6 +3,7 @@ import CompanionCard from "@/components/CompanionCard";
 import {getSubjectColor} from "@/lib/utils";
 import SubjectFilter from "@/components/SubjectFilter";
 import SearchInput from "@/components/SearchInput";
+import {getUserFavorites} from "@/lib/actions/favorites.actions";
 
 
 const CompanionsLibrary = async ({searchParams}: SearchParams) => {
@@ -11,6 +12,7 @@ const CompanionsLibrary = async ({searchParams}: SearchParams) => {
     const topic = filters.topic ? filters.topic: '';
 
  const companions = await getAllCompanions({subject, topic});
+ const favoriteIds = await getUserFavorites();
 
  console.log(companions);
 
@@ -23,6 +25,24 @@ const CompanionsLibrary = async ({searchParams}: SearchParams) => {
                <SubjectFilter />
            </div>
        </section>
+       {favoriteIds.length > 0 && (
+           <section>
+               <h2 className="text-xl font-semibold mb-3">Favorites</h2>
+               <div className="companions-grid">
+                   {companions
+                       .filter((c)=> favoriteIds.includes(c))
+                       .map((fav)=>(
+                           <CompanionCard
+                           key={fav.id}
+                           {...fav}
+                           color={getSubjectColor(fav.subject)}
+                           isBookmarked={true}
+                           />
+                       ))}
+               </div>
+           </section>
+       )}
+
        <section className="companions-grid">
            {companions.map((companion) => (
 
