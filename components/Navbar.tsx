@@ -12,7 +12,7 @@ const Navbar = () => {
            <Image 
                 src="/images/logo.png"
                 alt="Logo" width={46} height={44} 
-           className="rounded-lg"/>Learning Companion
+                className="rounded-lg"/><p className="hidden sm:block">Learning Companion</p>
         </div>
       </Link>
       <div className="flex items-center gap-8">
