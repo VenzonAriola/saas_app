@@ -7,9 +7,9 @@ import {
 import {currentUser} from "@clerk/nextjs/server";
 import {redirect} from "next/navigation";
 import Image from "next/image";
-
 import {getUserCompanions, getUserSessions} from "@/lib/actions/companion.actions";
 import CompanionList from "@/components/CompanionList";
+import {getFavoriteCompanion} from "@/lib/actions/favorites.actions";
 
 const Profile = async () => {
     const user = await currentUser();
@@ -18,8 +18,9 @@ const Profile = async () => {
 
     const companion = await getUserCompanions( user.id);
     const sessionHistory = await getUserSessions(user.id)
+    const favoriteCompanion = await getFavoriteCompanion(user.id);
 
-    console.log(sessionHistory)
+    //console.log(sessionHistory)
 
   return (
     <main className="min-lg:w-3/4">
@@ -54,7 +55,14 @@ const Profile = async () => {
 
             <Accordion type="multiple">
                 <AccordionItem value="recent">
-                    <AccordionTrigger className="text-2xt font-bold">Recent Sessions</AccordionTrigger>
+                    <AccordionTrigger className="text-2xt font-bold">My Favorite Companions{`(${favoriteCompanion.length})`}</AccordionTrigger>
+                    <AccordionContent className="flex flex-col gap-4 text-balance">
+                        <CompanionList title="Favorite companions" companions={favoriteCompanion} />
+
+                    </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="recent">
+                    <AccordionTrigger className="text-2xt font-bold">Recent Sessions{`(${sessionHistory.length})`}</AccordionTrigger>
                     <AccordionContent className="flex flex-col gap-4 text-balance">
                         <CompanionList title="Recent Sessions" companions={sessionHistory}/>
 

@@ -36,7 +36,7 @@ CompanionsListProps) => {
                     {/*map data from companions*/}
                     {/*companions?.map(({id, subject, name,duration, topic }) is to distructure companions*/}
                     { companions?.map(({id, subject, name,duration, topic })=>(
-                        <TableRow key={id}>
+                        <TableRow key={name}>
                             <TableCell>
                                 <Link href={`/companion/${id}`} >
                                     <div className="flex items-center gap-2">

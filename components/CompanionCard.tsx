@@ -2,49 +2,59 @@
 
 import Image from "next/image"
 import Link from "next/link";
-import {id} from "zod/locales";
-import {toggleFavorite} from "@/lib/actions/favorites.actions";
-import {useState, useTransition} from "react";
+import {removeFavorite} from "@/lib/actions/favorites.actions";
+import {addFavorite} from "@/lib/actions/favorites.actions";
+import {usePathname} from "next/navigation";
+import {useState} from "react";
 
 
 interface CompanionCardProps {
-    id:string,
-    name:string,
-    topic: string,
-    subject: string,
-    duration: number,
-    color: string,
-    isBookmarked?: boolean,
+    id:string;
+    name:string;
+    topic: string;
+    subject: string;
+    duration: number;
+    color: string;
+    favorite: boolean;
 }
 
 
-const CompanionCard = ({id,name,topic,subject,duration,color, isBookmarked = false}:
+const CompanionCard = ({id,name,topic,subject,duration,color, favorite}:
 CompanionCardProps) => {
 
-    const [bookmarked, setBookmarked] = useState(isBookmarked);
-    const [isPending, startTransition] = useTransition();
+    const pathname =usePathname();
+   const [isFavorite, setIsFavorite] = useState(favorite);
 
-    const handleBookmark = () =>{
-        setBookmarked(!isBookmarked); //instant UI feedback
-        startTransition(async () => {
+
+    const handleFavorite = async () =>{
+    //     if (favorite) {
+    //         await removeFavorite(id, pathname);
+    //     } else {
+    //         await addFavorite(id, pathname);
+    //     }
+    //};
             try {
-                await toggleFavorite(id);
-            } catch (err){
-                console.log(err);
-                setBookmarked(!isBookmarked);
+            if (isFavorite) {
+                await removeFavorite(id, pathname);
+                setIsFavorite(false);
+            } else {
+                await addFavorite(id, pathname);
+                setIsFavorite(true);
             }
-        })
-    }
+        } catch (error) {
+            console.error("Error toggling favorite:", error);
+        }
+    };
+
 
     return (
         <article className="companion-card" style={{backgroundColor:color}}>
             <div className="flex items-center justify-between">
                 <div className="subject-badge">{subject}</div>
-                    <input type="hidden" name="companionId" value={id}/>
-                    <button onClick={handleBookmark} className="companion-bookmark" disabled={isPending} >
+                    <button className="companion-bookmark" onClick={handleFavorite} >
                         <Image
-                            src={bookmarked? "/icons/bookmark-filled.svg" : "/icons/bookmark.svg"}
-                            alt="bookmark"
+                            src={ isFavorite ? "/icons/bookmark-filled.svg" : "icons/bookmark.svg" }
+                            alt="favorite"
                             width={12.5}
                             height={15}
                         />
